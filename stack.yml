@@ -6,4 +6,4 @@ functions:
   test-openfaas:
     lang: node12
     handler: ./test-openfaas
-    image: test-openfaas:latest
+    image: rickcoxdev/test-openfaas:latest
