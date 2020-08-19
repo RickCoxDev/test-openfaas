@@ -4,7 +4,6 @@ provider:
   gateway: http://127.0.0.1:8080
 functions:
   test-openfaas:
-    lang: python3-http
+    lang: node12
     handler: ./test-openfaas
     image: test-openfaas:latest
-
