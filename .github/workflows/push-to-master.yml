@@ -1,0 +1,22 @@
+name: Deploy to OpenFaaS
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy to OpenFaaS
+        uses: mrsimpson/action-openfaas-build@0.3.0
+        with:
+          stack-file: stack.yml
+          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-password: ${{ secrets.DOCKER_PASSWORD }}
+          platforms: linux/amd64,linux/arm/v7
+          deploy: ${{ github.ref == 'refs/heads/master' }}
+          openfaas-gateway: ${{ secrets.OPENFAAS_GATEWAY }}
+          openfaas-username: ${{ secrets.OPENFAAS_USERNAME }}
+          openfaas-password: ${{ secrets.OPENFAAS_PASSWORD }}
